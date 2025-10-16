@@ -157,11 +157,28 @@ Make sure to monitor "/tmp/, /var/tmp/:" as these are the directories used for t
 
 
 ## View active network connections
-**Resources used:** https://www.computerhope.com/issues/ch001079.htm, https://www.computerhope.com/unix/unetstat.htm
+**Resources used:** https://www.computerhope.com/issues/ch001079.htm, https://www.computerhope.com/unix/unetstat.htm 
 The "netstat" command is very useful for displaying what internet connections are active. The netstat command goes very in depth and more can be read in a manual or online, but the command that was listed to display statistics about all active internet connections was "netstat -natp". Another useful example would be if you wanted to see the routing table for all IP addresses bound to the server you would append "-rn".
 
 **Main takeaway:** Use "netstat" and append "-natp"
 
+
+## Lock user accounts / re-roll credentials
+Prereq: Must have root access. 
+
+#### Method 1 (Passwd method)
+**Resources used:** https://linuxhandbook.com/lock-unlock-user/ , https://linuxhandbook.com/change-shell-linux/, https://linuxize.com/post/usermod-command-in-linux/#setting-a-user-expiry-date
+This method relies on using the "passwd" command to lock a user out of their account. It basically works on the /etc/passwd file that was mentioned in common places for vulnerabilities, so manually modifying that file works too. 
+**To implement:** Use the command "passwd", append "-l" (lock) and enter the username of the user we want to lock. It should look like passwd -l username. 
+We can check to see if it worked by using "passwd -S username" (status) and if they are locked out it will show L or LK.  (use "passwd -u username" to unlock)
+
+**Drawback:** This won't get around SSH login. We need to use method 2 in order to prevent SSH login
+
+#### Method 2 (usermod method)
+This method relies on changing the user's shell to "nologin", which will prevent them from logging into a shell. Use the "usermod" command as well as "-s" (shell) and set it to "nologin". Another use of usermod is to set an expiration date on the account. This can be done with usermod and "-L" (lock) and setting a date somewhere between 1970 and the current date. This can be done with usermod "-L --expiredate 1970-01-02 username". Make sure to set an expired date so they can't log in. Using -u will unlock the account. 
+
+#### Method 3 (chage method)
+Method also sets an expiration date in the past preventing log in, but does it with the "chage" command instead. The command would look like: "chage -E 1 username" and would set the expiration date to Jan 2, 1970. Using "chage -E -1 username" reverses this. 
 
 
 
