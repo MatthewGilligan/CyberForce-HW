@@ -118,9 +118,9 @@ Important files to monitor include:
 These files contain user information like SSH keys and other personal stuff, making them a target for attackers. 
 Make sure to monitor these locations to make sure that data doesn't get leaked:
 - ~/.bashrc, ~/.profile, ~/.bash_profile, ~/.bash_logout: These are shell configuration files for individual users. Unauthorized changes to these files could indicate attempts to modify user environment settings, potentially for malicious purposes.
--~/.ssh/authorized_keys: This file stores SSH-authorized keys. Unauthorized additions to this file could indicate that an attacker has added a backdoor for remote access.
--~/.ssh/known_hosts: Contains SSH known hosts. Changes here might indicate unauthorized access attempts or man-in-the-middle attacks.
--~/.bash_history: Stores command history for users. While attackers might clear or modify this file, monitoring it can provide insights into suspicious user activity.
+- ~/.ssh/authorized_keys: This file stores SSH-authorized keys. Unauthorized additions to this file could indicate that an attacker has added a backdoor for remote access.
+- ~/.ssh/known_hosts: Contains SSH known hosts. Changes here might indicate unauthorized access attempts or man-in-the-middle attacks.
+- ~/.bash_history: Stores command history for users. While attackers might clear or modify this file, monitoring it can provide insights into suspicious user activity.
 
 #### 5. Cron Jobs
 (I hadn't even heard of this, but they seem super related to cyberforce)
