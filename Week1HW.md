@@ -181,6 +181,35 @@ This method relies on changing the user's shell to "nologin", which will prevent
 Method also sets an expiration date in the past preventing log in, but does it with the "chage" command instead. The command would look like: "chage -E 1 username" and would set the expiration date to Jan 2, 1970. Using "chage -E -1 username" reverses this. 
 
 
+## View active processes with detail (not just task manager)
+**Resource used:** https://www.freecodecamp.org/news/linux-list-processes-how-to-check-running-processes/
+You can list all active processes with the process status command "ps". This will give the process for the current shell with 4 columns
+- PID (process ID)
+- TTY (terminal type that's logged into)
+- TIME (total CPU usage)
+- CMD (name of the command that launched the process)
+
+Appending can give more information. Useful appends are
+- a : displays processes from other users too. 
+- u : processes that belong to specific usernames (definitely will use this)
+- x : includes processes that don't have a controlling terminal
+
+Appending -aux will result in 11 total columns. 
+- USER returns the username of the user running the process
+- PID returns the unique process ID
+- %CPU returns the percentage of CPU usage
+- %MEM returns the percentage memory usage
+- VSV returns the virtual size in Kbytes
+- RSS returns the resident set size
+- TT returns the control terminal name
+- STAT returns the symbolic process state
+- STARTED returns the time started
+- CMD returns the command that launched the process.
+
+All in all, this is super useful for seeing all of the active processes that are happening, and can be used to get a lot of valuable information
+
+## Conclusion
+What a cool first HW assignment! I really learned a lot! Very happy to say that this writeUp is 100% certified AI-free (which I feel helps me retain the information a little bit better). Looking forward to next meeting where we get to go over Defense against the dark arts curriculum!
 
 
 
