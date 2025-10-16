@@ -63,6 +63,23 @@ Example input would look like: getent group groupname
 
 In order to **list all groups** you can either open the /etc/group file with something like less or use getent group. Other commands can be used in tandem with this, such as awk which we went over in the last section. 
 
-Example input would look like: getend group
+Example input would look like: getent group
 
 ### Permissions
+**Resource used:** https://www.howtouselinux.com/post/check-file-permissions-in-linux 
+
+The most common and easiest way to see the permissions of a file is to run ls appending "-l" . This will show information about all the files in the working directory, including their permissions, ownership, size, and modification timestamps. Additionally, you can add in the filename to file size, last modification date, owner, group, and name of the file.
+
+Example input would look like: ls -l (or ls-l filename)
+
+Another way would be to use the "stat" command. Combine this with the filename of the file you want to check out and it will give you file permissions in both numeric and symbolic formats. 
+
+Example input would look like: stat filename
+
+**What does the information I'm getting from these commands mean?** 
+Each file or directory has 3 levels of ownership: user owner (u), group owner (g), and others (o)
+Each of these can be assigned with read (r), write (w) and execute (x) permissions. So the output "rw-r--r--" means that the owner has read and write perms while
+other group members and all others have read perms only. (This is symbolic mode, and is used in the chmod command to change perms. Like  “chmod u+w filename” would give the owner write permissions. Using a "-" instead of a "+" removes perms instead of granting them)
+
+
+ 
