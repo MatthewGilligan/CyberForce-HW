@@ -3,8 +3,7 @@ Week 1's Homework was to get experience with either windows or linux, whichever 
 I have used linux (mainly WSL) in the past for various CTFs or I use the powershell for my computer science classes, but I am still a linux beginner. 
 
 ## Questions to answer
-- enumerate users
-- groups/permissions
+- enumerate users, groups, permissions
 - identify common places for suspicious files
 	- as well as how to sort by recency
 - View active network connections
@@ -41,5 +40,29 @@ Example input would look like: getent passwd [username] (replacing username with
 
 
 ### Groups
+**Resource used:** https://linuxize.com/post/how-to-list-groups-in-linux/  
+There are 2 different types of groups a user can be a part of: A Primary group (also called login group) and a secondary group (also called supplementary group)
+The primary group is the group of the files created by the user. Each user MUST belong to EXACTLY one primary group. 
+Secondary groups are groups that can be used to grant various priveliges to users. Users can belong to ANY NUMBER of secondary groups. 
+
+Besides just "cat" "grep" and "less" like we talked about before, there is a specific command that was built specifically to give information about groups. 
+This is the "groups" command, and will print a list of all the groups the user is currently logged into. (I bet we could run this at the start of a competition, just to see what we're working with). We can also pass in a username to get the groups that a specific user belongs to. 
+
+Example input would look like: groups
+
+
+Another way to get the groups is by using the "id" command. This command lists the user id as well as the primary group and all secondary groups in number form. 
+Like groups, this command can work with a username, or if entered without a username it will display information about the user. Appending -n will show the names instead of number, -g will print only the primary group and -G will print all groups
+
+Example input would look like: id username (-nG)
+
+
+To **get all members of a group** we go back to "getent" but we add "group" and the name of the group. No output means the group doesn't exist.
+
+Example input would look like: getent group groupname
+
+In order to **list all groups** you can either open the /etc/group file with something like less or use getent group. Other commands can be used in tandem with this, such as awk which we went over in the last section. 
+
+Example input would look like: getend group
 
 ### Permissions
