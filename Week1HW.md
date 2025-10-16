@@ -144,8 +144,8 @@ Most common places:
 #### 8. Network Configuration Files
 These files control how the system connects to networks. Pay attention to these, especially for network based attacks.
 Make sure to monitor:
--/etc/hosts.allow, /etc/hosts.deny: Changes here could affect the network access controls, and are important for keeping our blue points (I think...)
--/etc/iptables/rules.v4, /etc/iptables/rules.v6: These files store firewall rules, so they're super essential to monitor to make sure that the firewall works.
+- /etc/hosts.allow, /etc/hosts.deny: Changes here could affect the network access controls, and are important for keeping our blue points (I think...)
+- /etc/iptables/rules.v4, /etc/iptables/rules.v6: These files store firewall rules, so they're super essential to monitor to make sure that the firewall works.
 
 #### 9. Kernel Modules
 Pieces of code that get loaded into the kernel (hardware interaction)
@@ -155,6 +155,12 @@ Make sure to monitor "/etc/modules, /etc/modprobe.d/" as these are the kernal co
 Temporary directories are used by normal users and attackers to store/execute files
 Make sure to monitor "/tmp/, /var/tmp/:" as these are the directories used for temporary storage. Pay attention to unusal activity here. 
 
+
+## View active network connections
+**Resources used:** https://www.computerhope.com/issues/ch001079.htm, https://www.computerhope.com/unix/unetstat.htm
+The "netstat" command is very useful for displaying what internet connections are active. The netstat command goes very in depth and more can be read in a manual or online, but the command that was listed to display statistics about all active internet connections was "netstat -natp". Another useful example would be if you wanted to see the routing table for all IP addresses bound to the server you would append "-rn".
+
+**Main takeaway:** Use "netstat" and append "-natp"
 
 
 
